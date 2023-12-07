@@ -14,7 +14,6 @@
 /// let numbers: Vec<i64> = s.numbers().collect();
 /// assert_eq!(numbers, vec![1, 2, 3, 4]);
 /// ```
-
 use std::cmp;
 
 pub fn run(input: &str) {
@@ -76,18 +75,26 @@ impl<'a> Numbers<'a> {
             input,
             pos: 0,
             number_words: vec![
-                ("zero", 0), ("one", 1), ("two", 2), ("three", 3),
-                ("four", 4), ("five", 5), ("six", 6), ("seven", 7),
-                ("eight", 8), ("nine", 9)
+                ("zero", 0),
+                ("one", 1),
+                ("two", 2),
+                ("three", 3),
+                ("four", 4),
+                ("five", 5),
+                ("six", 6),
+                ("seven", 7),
+                ("eight", 8),
+                ("nine", 9),
             ],
         }
     }
 
     pub fn parse_spelled_number(&mut self) -> Option<i64> {
         let mut longest_match = (0, None); // (length of match, number)
-        
+
         for &(word, number) in &self.number_words {
-            if self.pos + word.len() <= self.input.len() && self.input[self.pos..].starts_with(word) {
+            if self.pos + word.len() <= self.input.len() && self.input[self.pos..].starts_with(word)
+            {
                 longest_match = cmp::max(longest_match, (word.len(), Some(number)));
             }
         }
@@ -106,7 +113,11 @@ impl<'a> Iterator for Numbers<'a> {
 
     fn next(&mut self) -> Option<Self::Item> {
         while self.pos < self.input.len() {
-            if let Some(digit) = self.input[self.pos..].chars().next().filter(|c| c.is_digit(10)) {
+            if let Some(digit) = self.input[self.pos..]
+                .chars()
+                .next()
+                .filter(|c| c.is_digit(10))
+            {
                 self.pos += 1; // Advance position after finding a digit
                 return Some(digit.to_digit(10).unwrap() as i64);
             }
@@ -117,7 +128,7 @@ impl<'a> Iterator for Numbers<'a> {
 
             self.pos += 1;
         }
-        
+
         None
     }
 }
@@ -139,12 +150,7 @@ pub mod tests {
     /// The example given for part one from `https://adventofcode.com/2023/day/1`.
     #[test]
     pub fn example_part_one() {
-        let input = concat!(
-            "1abc2\n",
-            "pqr3stu8vwx\n",
-            "a1b2c3d4e5f\n",
-            "treb7uchet\n",
-        );
+        let input = concat!("1abc2\n", "pqr3stu8vwx\n", "a1b2c3d4e5f\n", "treb7uchet\n",);
         let val = super::part_one(input);
         assert_eq!(val, 142);
     }
