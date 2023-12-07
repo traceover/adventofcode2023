@@ -16,12 +16,6 @@
 /// ```
 use std::cmp;
 
-pub fn run(input: &str) {
-    println!("Day 01");
-    println!("    Part one: {}", part_one(input));
-    println!("    Part two: {}", part_two(input));
-}
-
 /// The sum of all of the first and last digits found in each line.
 pub fn part_one(input: &str) -> i64 {
     let mut sum = 0;

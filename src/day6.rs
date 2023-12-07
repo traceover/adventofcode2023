@@ -1,16 +1,14 @@
+use anyhow::{anyhow, Context, Error, Result};
 use std::iter;
 use std::str::FromStr;
-use anyhow::{anyhow, Result, Context, Error};
 
-pub fn run(input: &str) {
+pub fn run(input: &str) -> (i64, i64) {
     /*let input = concat!(
         "Time:      7  15   30\n",
         "Distance:  9  40  200\n",
     );*/
 
-    println!("Day 06");
-    println!("    Part one: {}", part_one(input));
-    println!("    Part two: {}", part_two(input));
+    (part_one(input), part_two(input))
 }
 
 pub fn part_one(input: &str) -> i64 {
@@ -109,4 +107,3 @@ impl FromStr for PartTwo {
         Ok(Self { time, distance })
     }
 }
-
