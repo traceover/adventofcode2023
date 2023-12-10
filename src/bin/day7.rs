@@ -10,7 +10,7 @@ fn main() {
 
 pub fn run(input: &str, is_v2: bool) -> i32 {
     let mut hands: Vec<Hand> = input.lines().map(|line| parse_hand(line, is_v2)).collect();
-    hands.sort_by(|a, b| a.cmp(&b)); // Check out `impl Ord for Hand`
+    hands.sort(|a, b| a.cmp(&b)); // Check out `impl Ord for Hand`
 
     /*for hand in &hands {
         println!("{} => {:?} => {}", hand.cards, hand.rank, hand.bid);

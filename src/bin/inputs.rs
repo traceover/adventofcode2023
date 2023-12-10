@@ -27,10 +27,11 @@ fn main() -> Result<()> {
             .context("Could not write file")?;
     }
 
+    println!("Successfully downloaded inputs for days 1..{}", CURRENT_DAY);
     Ok(())
 }
 
-pub const CURRENT_DAY: usize = 7;
+pub const CURRENT_DAY: usize = 8;
 pub const DEFAULT_INPUT_PATH: &str = "inputs";
 
 pub fn download_input(day: usize, year: &str, cookie: &str) -> Result<String> {
