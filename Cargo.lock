@@ -7,6 +7,7 @@ name = "adventofcode2023"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "array2d",
  "itertools",
  "minreq",
  "regex",
@@ -26,6 +27,12 @@ name = "anyhow"
 version = "1.0.75"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a4668cab20f66d8d020e1fbc0ebe47217433c1b6c8f2040faf858554e394ace6"
+
+[[package]]
+name = "array2d"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "94ad5242bab1ff9b496507236c8b8f47d5ba476a37aade93b2ebe60093b3c065"
 
 [[package]]
 name = "bitflags"

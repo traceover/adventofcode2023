@@ -4,7 +4,7 @@ use std::fs::{self, File};
 use std::io::{self, Write};
 use std::path::Path;
 
-pub const CURRENT_DAY: usize = 9;
+pub const CURRENT_DAY: usize = 10;
 pub const DEFAULT_INPUT_PATH: &str = "inputs";
 
 fn main() -> Result<()> {
