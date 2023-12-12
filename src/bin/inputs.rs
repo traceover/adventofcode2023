@@ -4,6 +4,9 @@ use std::fs::{self, File};
 use std::io::{self, Write};
 use std::path::Path;
 
+pub const CURRENT_DAY: usize = 9;
+pub const DEFAULT_INPUT_PATH: &str = "inputs";
+
 fn main() -> Result<()> {
     let input_dir = DEFAULT_INPUT_PATH;
 
@@ -30,9 +33,6 @@ fn main() -> Result<()> {
     println!("Successfully downloaded inputs for days 1..{}", CURRENT_DAY);
     Ok(())
 }
-
-pub const CURRENT_DAY: usize = 8;
-pub const DEFAULT_INPUT_PATH: &str = "inputs";
 
 pub fn download_input(day: usize, year: &str, cookie: &str) -> Result<String> {
     let url = format!("https://adventofcode.com/{year}/day/{day}/input");
