@@ -188,7 +188,7 @@ pub fn parse_transition_tables(input: &str) -> Result<Vec<Table>, ParseError> {
 
 #[cfg(test)]
 mod tests {
-    use super::{parse_transition_tables, part_one, part_two, Table};
+    use super::{part_one, part_two, Table};
 
     const INPUT: &str = concat!(
         "seeds: 79 14 55 13\n",
@@ -228,14 +228,12 @@ mod tests {
 
     #[test]
     fn test_part_one() {
-        let tables = parse_transition_tables(INPUT).expect("failed to parse transition tables");
-        assert_eq!(35, part_one(INPUT, &tables));
+        assert_eq!(35, part_one(INPUT));
     }
 
     #[test]
     fn test_part_two() {
-        let tables = parse_transition_tables(INPUT).expect("failed to parse transition tables");
-        assert_eq!(46, part_two(INPUT, &tables));
+        assert_eq!(46, part_two(INPUT));
     }
 
     #[test]
