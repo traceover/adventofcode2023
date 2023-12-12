@@ -1,5 +1,12 @@
 use anyhow::{anyhow, Context, Error, Result};
 use std::str::FromStr;
+use std::fs;
+
+fn main() {
+    let input = fs::read_to_string("inputs/2.txt").expect("Failed to read input file");
+    println!("Part one: {}", part_one(&input));
+    println!("Part two: {}", part_two(&input));
+}
 
 /// The sum of the ids of all possible games.
 pub fn part_one(input: &str) -> i64 {

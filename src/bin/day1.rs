@@ -14,7 +14,14 @@
 /// let numbers: Vec<i64> = s.numbers().collect();
 /// assert_eq!(numbers, vec![1, 2, 3, 4]);
 /// ```
+use std::fs;
 use std::cmp;
+
+fn main() {
+    let input = fs::read_to_string("inputs/1.txt").expect("Failed to read input file");
+    println!("Part one: {}", part_one(&input));
+    println!("Part two: {}", part_two(&input));
+}
 
 /// The sum of all of the first and last digits found in each line.
 pub fn part_one(input: &str) -> i64 {

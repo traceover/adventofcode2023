@@ -1,3 +1,11 @@
+use std::fs;
+
+fn main() {
+    let input = fs::read_to_string("inputs/4.txt").expect("Failed to read input file");
+    println!("Part one: {}", part_one(&input));
+    println!("Part two: {}", part_two(&input));
+}
+
 pub fn part_one(input: &str) -> i64 {
     let cards = parse(input);
     let mut sum = 0;

@@ -1,14 +1,12 @@
 use anyhow::{anyhow, Context, Error, Result};
 use std::iter;
 use std::str::FromStr;
+use std::fs;
 
-pub fn run(input: &str) -> (i64, i64) {
-    /*let input = concat!(
-        "Time:      7  15   30\n",
-        "Distance:  9  40  200\n",
-    );*/
-
-    (part_one(input), part_two(input))
+fn main() {
+    let input = fs::read_to_string("inputs/6.txt").expect("Failed to read input file");
+    println!("Part one: {}", part_one(&input));
+    println!("Part two: {}", part_two(&input));
 }
 
 pub fn part_one(input: &str) -> i64 {
