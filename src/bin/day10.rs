@@ -9,9 +9,51 @@ pub const WEST:  u8 = 0b0001;
 fn main() {
     let input = fs::read_to_string("inputs/10.txt").expect("Failed to read input file");
     println!("Part one: {}", part_one(&input));
+    println!("Part two: {}", part_two(&input));
 }
 
 pub fn part_one(input: &str) -> usize {
+    let (grid, start) = parse(input);
+    let mut visited = Array2D::filled_with(false, grid.num_rows(), grid.num_columns());
+    let mut points = vec![start];
+    let mut steps = 0;
+
+    loop {
+        let mut next_points = vec![];
+        for (row, col) in points {
+            visited[(row, col)] = true;
+            let nbors = grid[(row, col)];
+            if nbors & NORTH > 0 && row > 0 && !visited[(row - 1, col)] {
+                next_points.push((row - 1, col));
+            }
+            if nbors & SOUTH > 0 && !visited[(row + 1, col)] {
+                next_points.push((row + 1, col));
+            }
+            if nbors & WEST > 0 && col > 0 && !visited[(row, col - 1)] {
+                next_points.push((row, col - 1));
+            }
+            if nbors & EAST > 0 && !visited[(row, col + 1)] {
+                next_points.push((row, col + 1));
+            }
+        }
+        if next_points.len() == 0 {
+            break;
+        }
+        points = next_points;
+        steps += 1;
+    }
+
+    steps
+}
+
+pub fn part_two(input: &str) -> usize {
+    let (grid, start) = parse(input);
+    _ = grid;
+    _ = start;
+    0
+}
+
+pub fn parse(input: &str) -> (Array2D<u8>, (usize, usize)) {
     let num_rows = input.lines().count();
     let num_cols = input.lines().next().unwrap().len();
 
@@ -62,39 +104,9 @@ pub fn part_one(input: &str) -> usize {
     if start.1 > 0 && grid[(start.0, start.1 - 1)] & EAST > 0 {
         nbors |= WEST;
     }
-    let _ = grid.set(start.0, start.1, nbors);
+    grid[start] = nbors;
 
-    // Second try...
-    let mut visited = Array2D::filled_with(false, num_rows, num_cols);
-    let mut points = vec![start];
-    let mut steps = 0;
-
-    loop {
-        let mut next_points = vec![];
-        for (row, col) in points {
-            visited[(row, col)] = true;
-            let nbors = grid[(row, col)];
-            if nbors & NORTH > 0 && row > 0 && !visited[(row - 1, col)] {
-                next_points.push((row - 1, col));
-            }
-            if nbors & SOUTH > 0 && !visited[(row + 1, col)] {
-                next_points.push((row + 1, col));
-            }
-            if nbors & WEST > 0 && col > 0 && !visited[(row, col - 1)] {
-                next_points.push((row, col - 1));
-            }
-            if nbors & EAST > 0 && !visited[(row, col + 1)] {
-                next_points.push((row, col + 1));
-            }
-        }
-        if next_points.len() == 0 {
-            break;
-        }
-        points = next_points;
-        steps += 1;
-    }
-
-    steps
+    (grid, start)
 }
 
 #[cfg(test)]
